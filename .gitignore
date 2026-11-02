@@ -1,0 +1,73 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.so
+*.pyd
+
+# ===== C++ / CUDA 编译产物 =====
+*.o
+*.obj
+*.d
+*.i
+*.ii
+*.gpu
+*.ptx
+*.cubin
+*.fatbin
+*.sass
+*.exp
+*.lib
+*.exe
+*.dll
+*.out
+
+# ===== CMake =====
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# ===== IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== 实验输出（关键：不提交 benchmark 产物） =====
+experiments/*/results/
+experiments/*/logs/
+experiments/*/__pycache__/
+
+# ===== 数据与模型 =====
+models/
+data/
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# ===== 缓存与测试产物 =====
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.log
+
+# ===== 运行输出 =====
+logs/
+output/
+
+# ===== Claude Code =====
+CLAUDE.md
+.claude/
+
+# ===== 系统 =====
+.DS_Store
+Thumbs.db

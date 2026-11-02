@@ -1,0 +1,32 @@
+# HPCS4Inference 运行与构建依赖
+#
+# 版本取自实际验证过的环境（Windows 11 + GTX 1650, sm_75）：
+#   Python 3.10.18 / conda env env3.10 / CUDA 11.8
+#
+# torch 的 +cu118 轮子不在 PyPI 主索引上，需要额外的下载源。
+# 下面这行会让 pip 同时从 PyTorch 官方源解析版本：
+--extra-index-url https://download.pytorch.org/whl/cu118
+
+# ---------- 运行时 ----------
+# CUDA 11.8 构建；换成其他 CUDA 版本时同步修改 +cuXXX 与下载源
+torch==2.7.1+cu118
+transformers==5.14.1
+# from_pretrained(device_map=...) 依赖 accelerate
+accelerate==1.14.0
+
+# ---------- 构建扩展 ----------
+# setup.py 直接 import pybind11 获取头文件路径
+pybind11==3.0.3
+setuptools==80.9.0
+wheel==0.45.1
+
+# ---------- 对话示例（examples/chat.py 的 4-bit 量化）----------
+# 不跑量化对话时可以删掉这一行
+bitsandbytes==0.49.2
+
+# 说明：
+# * 仓库脚本会自动把仓库根目录加入 sys.path，未安装本包也能直接运行；
+#   pip 安装时请使用 `pip install -e . --no-build-isolation --no-deps`。
+# * transformers 会自动带入 tokenizers / safetensors / huggingface_hub 等间接依赖，
+#   本环境实测为 tokenizers 0.22.2、safetensors 0.8.0、huggingface_hub 1.24.0。
+# * numpy 实测 1.24.4（由 torch / transformers 带入），本项目不直接依赖。
